@@ -6,16 +6,6 @@
 
 Projeto experimental de fã que revisita **Tenchu: Stealth Assassins** no **Windows**, com texturas em HD e modificações na câmera e no combate. A ideia é dar uma nova vida ao clássico, por diversão, e compartilhar a evolução com a comunidade.
 
-## Galeria
-
-Registros dos testes de desenvolvimento. O visual e a jogabilidade continuam evoluindo. Clique nas imagens para abrir os prints completos.
-
-| Rikimaru em jogo | Movimentação |
-| --- | --- |
-| [![Rikimaru em uma área iluminada por uma lanterna](01-rikimaru-em-jogo.jpg)](01-rikimaru-em-jogo.jpg) | [![Rikimaru durante os testes de movimentação](02-movimentacao.jpg)](02-movimentacao.jpg) |
-| **Rolamento** | **Câmera e cenário** |
-| [![Teste de rolamento de Rikimaru](03-rolamento.jpg)](03-rolamento.jpg) | [![Teste da câmera e da apresentação do cenário](04-camera-e-cenario.jpg)](04-camera-e-cenario.jpg) |
-
 ## O que estamos experimentando
 
 - Texturas em HD e apresentação em modo janela.
@@ -50,4 +40,4 @@ Este é um projeto de fã, sem vínculo oficial com os criadores ou titulares de
 
 ## English
 
-**Tenchu Shadow Reborn** is an experimental, non-commercial fan project for Windows, revisiting Tenchu: Stealth Assassins with HD textures and camera and combat modifications. These screenshots document development tests. The project is still in development; honest feedback, playtesting, suggestions and bug reports through Issues are welcome. AI tools support the creative and experimental process.
+**Tenchu Shadow Reborn** is an experimental, non-commercial fan project for Windows, revisiting Tenchu: Stealth Assassins with HD textures and camera and combat modifications. The project is still in development; honest feedback, playtesting, suggestions and bug reports through Issues are welcome. AI tools support the creative and experimental process.
