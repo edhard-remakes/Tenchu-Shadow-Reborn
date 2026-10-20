@@ -1,0 +1,66 @@
+name: Importar fontes Tenchu v0.2.0
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: github.repository == 'edhard-remakes/Tenchu-Shadow-Reborn' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+          fetch-depth: 1
+      - name: Importar arquivos verificados e preservar a apresentacao
+        shell: python
+        run: |
+          import hashlib, io, pathlib, urllib.request, zipfile
+          url = 'https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/download/v0.2.0/Tenchu-Shadow-Reborn-v0.2.0-source.zip'
+          data = urllib.request.urlopen(url, timeout=90).read()
+          assert hashlib.sha256(data).hexdigest() == '4e3eb0e8404f50484de245edd54c83788cf28f7c9ea0b45f3be7b4a83653b7ae'
+          count = 0
+          with zipfile.ZipFile(io.BytesIO(data)) as archive:
+              for entry in archive.infolist():
+                  assert not entry.is_dir()
+                  path = pathlib.PurePosixPath(entry.filename)
+                  assert path.parts[0] == 'Tenchu-Shadow-Reborn-source'
+                  relative = pathlib.PurePosixPath(*path.parts[1:])
+                  assert not relative.is_absolute() and '..' not in relative.parts
+                  assert relative.parts[0] in ('dev', 'docs', 'texture-tools', 'rikimaru-refinado-v1', 'rikimaru-refinado-texturizado', 'README.md', 'build.ps1', '.gitignore', 'SOURCE-MANIFEST.json')
+                  if str(relative) == 'README.md':
+                      relative = pathlib.PurePosixPath('docs/BUILDING.md')
+                  target = pathlib.Path(str(relative))
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(archive.read(entry))
+                  count += 1
+          assert count == 49
+          readme = pathlib.Path('README.md')
+          text = readme.read_text(encoding='utf-8')
+          start = text.index('## Código-fonte')
+          end = text.index('## O que estamos experimentando', start)
+          section = '''## Código-fonte
+
+          Os arquivos estão versionados diretamente na branch **main**, organizados em pastas, para consultar, clonar e contribuir pelo GitHub:
+
+          - [Aplicativo e mudanças de gameplay](dev/Tenchu-Windows/)
+          - [Lançador do EXE único](dev/SingleFileLauncher/)
+          - [Patch de temporização](dev/RuntimePatch/)
+          - [Ferramentas de textura](texture-tools/)
+          - [Refinamento da malha](rikimaru-refinado-v1/) e [preparação das texturas](rikimaru-refinado-texturizado/)
+          - **[Instruções de compilação](docs/BUILDING.md)**
+
+          O [ZIP de fontes da v0.2.0](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/download/v0.2.0/Tenchu-Shadow-Reborn-v0.2.0-source.zip) continua como opção extra. O motor RecompOne é uma dependência externa, descrita no guia. Disco, BIOS, saves, pacote HD de terceiros e código de jogo gerado localmente ficam fora dos fontes versionados. Os arquivos automáticos de tags anteriores à importação mantêm o conteúdo daquele momento; para consultar os fontes no Git, use a branch main.
+
+          '''
+          readme.write_text(text[:start] + section + text[end:], encoding='utf-8')
+          print('Imported 49 verified source/support files; preserved project presentation.')
+      - name: Commit e push dos arquivos para main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dev docs texture-tools rikimaru-refinado-v1 rikimaru-refinado-texturizado build.ps1 .gitignore SOURCE-MANIFEST.json README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Publicar fontes Tenchu v0.2.0 diretamente na main"
+            git push origin HEAD:main
+          fi
