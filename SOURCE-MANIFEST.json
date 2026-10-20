@@ -1,0 +1,186 @@
+{
+  "release": "v0.2.0",
+  "game_upstream": "https://github.com/Heromachine/Tenchu-SA-Recomp",
+  "game_upstream_commit": "8188535",
+  "files_copied_verbatim": [
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkActionStamina.cs",
+      "sha256": "3c9b3cbbe09af6bf421d5f189dd25b4c4537cddd5ee7b86ac4af1d2dd93d3152"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkCameraHalfStep.cs",
+      "sha256": "f709a3d0113f43e9de47d094a6d12d192572cb82d2fee7c7ba660f59984a1881"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkCombatAudio.cs",
+      "sha256": "6727131b143918a8db84a6efd94dc984ace38ef3ef3effe01e7fe563a90946dc"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkCrowd.cs",
+      "sha256": "0783f1780e943cd9cc851f0a55aebfa66043411b1ef6df040b9b7b8a367e4031"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkExecution.cs",
+      "sha256": "b8adbdc8ed97fc253ba9e916aa1170595b96a5896759bd06caea575af5ebcbd4"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkFramePacing.cs",
+      "sha256": "e85a9a07accf8e9db5b0b2fc19fef363da3429e0747297297026d24ac4e09172"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkGameTiming.cs",
+      "sha256": "5a03616e8b283772fa845b1b06fff849bc63b9537aa89a79c496d143cb8d8a11"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkGrab.cs",
+      "sha256": "d342fcd21b9ef0d8443fd388907d74a61ee6dc3d01f47b7e85b68716ebdd4626"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkHalfStep.cs",
+      "sha256": "db67272dfc2b8e52e04813da8171fa9d05ee41d6260d11733e10d913ee9d92b4"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkHdRikimaru.cs",
+      "sha256": "4ae740b32efd4949b7ba01def14ee06edc5fa7fc2c3fdf6d2cba3f64259bea61"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkHeavy.cs",
+      "sha256": "1406fb2ad2a060091c661e652a3ead04d76bc3def328d28dfac29de2b7d06944"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkHeavyContact.cs",
+      "sha256": "de706722c81ebe2fb153fc59babf16a1c98d94fb45c2416361296086713b8ca8"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkHeavyEffects.cs",
+      "sha256": "130a6efcff8715fbf143182a3ab9cbd28973196fad0871d932038994668e483a"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkItemHalfStep.cs",
+      "sha256": "00b9ef9c1c259f0f5f86a91ecfc99b2da12a09394f44a7a510252088f73acb44"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkPad.cs",
+      "sha256": "3bd5e97d8d4b649beaba038e78c93be7e5c8ac92cd5caceb8bcb2771b4ad016a"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkRoninGameplay.cs",
+      "sha256": "6b086833fe2dc7210fecc1ab529f9df8593379745fe455208872aafb47020194"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BenchmarkStamina.cs",
+      "sha256": "a96c89a4065fbc9f39112c6a9ed24afd35a9648aaa5d0ac7d94aef5cfb85c965"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BuildPickerPopup.cs",
+      "sha256": "e97669096500bafae5bd7e88efd54870af481956cee98e685ecd50c7f2f9ec3d"
+    },
+    {
+      "path": "dev/Tenchu-Windows/BuildScreen.cs",
+      "sha256": "6cc67e85b2018b126841091754925aff4193d083bb8003f55772eb11d61e076d"
+    },
+    {
+      "path": "dev/Tenchu-Windows/DiscCheck.cs",
+      "sha256": "6be6e403f58464bc171db426da72a272b8fed1f80d00f35fb387f3133406b980"
+    },
+    {
+      "path": "dev/Tenchu-Windows/GameReset.cs",
+      "sha256": "0b488f7470c1c84ad6f6ea49a43abbd33534d03bcd1565dc7725d20672eb4981"
+    },
+    {
+      "path": "dev/Tenchu-Windows/KeyboardTapBuffer.cs",
+      "sha256": "af72d274e0e47947f8ac2b4bb3edda64a9752e76bf340f8b67fe336b45d5d93b"
+    },
+    {
+      "path": "dev/Tenchu-Windows/KujiBackground.cs",
+      "sha256": "017756f0c6e65ae27370f5d60eb78a2719cd39d9dd0e8d41d1c762b2843d6e5a"
+    },
+    {
+      "path": "dev/Tenchu-Windows/NativeFullscreen.cs",
+      "sha256": "bff960aee9d6384cafb6289fb380088248eaeb077dc809e51996892bb702b03c"
+    },
+    {
+      "path": "dev/Tenchu-Windows/Program.cs",
+      "sha256": "22cd5849896229be9f2b316b8425e6130d2c8dba3148fb4f5f69dc75de3198ec"
+    },
+    {
+      "path": "dev/Tenchu-Windows/QuickTestStart.cs",
+      "sha256": "848b3184acae042fda4f79658645bca310c9bb4abd2f6a4faacc043207f1d733"
+    },
+    {
+      "path": "dev/Tenchu-Windows/SplashScreen.cs",
+      "sha256": "c40bd4e246ceabc109de1c5581d0fdcc7c3c13bd50f8e0fc42c263cc5e6f7fcc"
+    },
+    {
+      "path": "dev/Tenchu-Windows/TexturePack.cs",
+      "sha256": "318a4abc85b0a9767c44c54ce39e32ba2fb47f26ee2d3723f9bf1a0cc502291b"
+    },
+    {
+      "path": "dev/Tenchu-Windows/DISC.md",
+      "sha256": "a61061c6a28c41b0b120a0b5b50b7b1ac2956f65e4a72c714c1d05743c340337"
+    },
+    {
+      "path": "dev/Tenchu-Windows/assets/config.json",
+      "sha256": "5e4f6cee526aedc8fb78baf177941c329b10e5b88cb3d08f38357cfba9cf2c7d"
+    },
+    {
+      "path": "dev/Tenchu-Windows/assets/tenchu-shadow-reborn.ico",
+      "sha256": "b6ad3c5030ad3288be4527f4462b48d17d20ce77dcbd4df487a75f84f587db5d"
+    },
+    {
+      "path": "dev/Tenchu-Windows/assets/tenchu-shadow-reborn.png",
+      "sha256": "4204cf681c3cd48c10f541fb8181fcaf84c2214ee64ba959ea5179e09e504e1c"
+    },
+    {
+      "path": "dev/Tenchu-Windows/GameTemplate/Stubs.cs",
+      "sha256": "4c0838e5e5c5d80fd160f78f270446d406eded10c46a279915336b3730f08915"
+    },
+    {
+      "path": "docs/UPSTREAM-README.md",
+      "sha256": "409e18792980015fa5df9cc5ab673a013a8d0277ca7859e6b368cb5d8a4ca5ea"
+    },
+    {
+      "path": "dev/SingleFileLauncher/Program.cs",
+      "sha256": "91b60842b1ee12b6a0fe9501c10776d1ce2e751d184c4d1aff5186358407083b"
+    },
+    {
+      "path": "dev/SingleFileLauncher/Launcher.csproj",
+      "sha256": "194f64706bd3ff358ccd359f6d248c087823e9f781f4ac2274cb0e5e24d1289e"
+    },
+    {
+      "path": "dev/SingleFileLauncher/package.py",
+      "sha256": "16b7d43e597c4bcc47977d6a94b80e175de5ec5e94c63a2c063e3f2c7fbc901e"
+    },
+    {
+      "path": "dev/RuntimePatch/Program.cs",
+      "sha256": "cf1bce4afadaa0c2c753eb6e184a051e2d78ac148f5f542b6a39bf2ca827fc45"
+    },
+    {
+      "path": "dev/RuntimePatch/RuntimePatch.csproj",
+      "sha256": "bd1b6ce1d2dcd89771930d57cde5bc47a0fc45842f0d74a0685b373ccb32f640"
+    },
+    {
+      "path": "texture-tools/prepare_pack.py",
+      "sha256": "dbe8ac05430f67928b43c623ab4a1015da5531d2932959ce7974135162981ed7"
+    },
+    {
+      "path": "rikimaru-refinado-v1/refine.py",
+      "sha256": "66c94ef8f9ada69751929f4e113928fc96f60ff0852e14cb707c7c96a485f89b"
+    },
+    {
+      "path": "rikimaru-refinado-texturizado/texture.py",
+      "sha256": "6a5d5a03ea73d4b8bc41f37c218753469ff4c3b36d626c764f58c121aec17dc2"
+    },
+    {
+      "path": "rikimaru-refinado-texturizado/export_runtime.py",
+      "sha256": "cd19c507acb6eb93e86e923c95b979b6bf55bb6da036039601f6a837b8865693"
+    },
+    {
+      "path": "rikimaru-refinado-texturizado/export_hd_runtime.py",
+      "sha256": "1780346c73c241bc6bc8a69f5f158a1ea24274c44a3d59d69868d25f6ab02d7e"
+    }
+  ],
+  "portable_project_changes": [
+    "Dependency HintPath entries only; source .cs files unchanged."
+  ]
+}

@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+**/game/
+**/logs/
+**/saves/
+dependencies/
+dist/
+*.cue
+*.iso
+*.sav
+*.mcr
+*.pdb

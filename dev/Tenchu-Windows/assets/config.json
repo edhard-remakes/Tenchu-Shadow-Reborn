@@ -1,0 +1,152 @@
+{
+  // RecompOne config -- Tenchu: Stealth Assassins (USA)
+  //
+  // Serial SLUS-00706, boot exe cdrom:\SLUS_007.06;1, read automatically from SYSTEM.CNF.
+  // (That file on this disc has no spaces around '=' and carries no TCB line at all; SystemCfg
+  // handles both, trimming each side and defaulting Tcb to 4.)
+  //
+  // The recompiler reads SYSTEM.CNF and the PS-EXE straight from the disc, so elf/map/funcMap are
+  // OPTIONAL -- omitting them makes it auto-scan for functions. That is the right first pass. Add a
+  // funcMap later for better output; see the notes at the bottom.
+  //
+  // The launcher loads this file in-process and overrides "cue" with the disc the user picked, so
+  // the value here is only a placeholder for command-line runs. This file is also hashed into the
+  // launcher's build cache stamp, so ANY edit here forces a full recompile on next launch.
+  //
+  // Run standalone from anywhere:
+  //   dotnet <RecompOne-fork>/RecompOne.Recompiler/bin/Release/net10.0/recompone.dll \
+  //          assets/config.json
+  //   ...with "cue" below pointing at your own disc image.
+
+  "game": {
+    "id": "SLUS-00706",
+    "name": "Tenchu",
+    "output": "./Recompiled"          // resolved relative to this config; generated C# lands here
+  },
+
+  // Disc image. PLACEHOLDER ONLY -- a bare filename, deliberately not a real path. The launcher
+  // never reads this value: Program.cs overrides it at runtime with the disc the user picked
+  // ("config.Cue = discPath"). It matters only for a standalone command-line recompile, where you
+  // should point it at your own dump.
+  //
+  // The reference dump is single-track MODE2/2352, 294,626 sectors, and its cue points at a .img
+  // rather than a .bin (CueBin reads the FILE line, so the extension does not matter).
+  "cue": "Tenchu - Stealth Assassins (Greatest Hits) (US).cue",
+
+  // ---- Symbol sources (all optional; leave off for a pure auto-scan first pass) ----
+  // "elf":     null,   // deprecated in favor of map/funcMap
+  // "map":     null,   // linker .map if you have one
+  // "funcMap": "./funcs.json",   // generate with: recompone --generate-function-file -elf <elf> -map <map> -out funcs.json
+  //
+  // WORTH KNOWING BEFORE YOU SKIP THIS: SdkPatches matches ~50 psyq library names (CdInit, VSync,
+  // DrawOTag, PadInitDirect, ...) by SYMBOL NAME, ordinal, and swaps in C# reimplementations. With
+  // no symbol source every function is named func_XXXXXXXX, so NONE of those fire and the psyq
+  // libraries get recompiled verbatim instead. Auto-scan still works; just know what it costs.
+
+  // "main": "800XXXXX",   // optional entry-point override (hex). Not usually needed -- InitialPC
+  //                       // comes from the PS-EXE header.
+
+  // Linear sweep finds functions the symbols miss, but WILL misread some data as code.
+  //
+  // Start FALSE and turn it on when the first unmapped-call crash lands in a gap between two
+  // already-detected functions -- that is the signature it fixes. On the sibling project it was
+  // needed almost immediately and stayed on for the rest of the project.
+  //
+  // TURNED ON 2026-08-20, on that exact signature, at the very first boot. The auto-scan baseline
+  // was 668 functions; the first crash was "unmapped call: 0x80039828", reached from func_80039098
+  // five frames below the entry point, and 0x80039828 sits in the GAP between the detected
+  // functions 0x80039764 and 0x80039854. The IRQ callback skipped just before it, 0x800397BC, is
+  // in that same gap. Same story as the sibling project, which needed it almost immediately too.
+  "linearSweep": true,
+
+  "debug": false,
+
+  // Overlays: PS1 games swap code/data into the same RAM region, and each overlay must be defined
+  // by hand (name + base, plus either file, or lba+size). Start empty; add entries once the layout
+  // is known.
+  //
+  // FIRST THING TO CHECK ON THIS GAME: whether SLUS_007.06 is the actual game or just a bootstrap.
+  // On the sibling project the boot EXE turned out to be a small loader that read and jumped to a
+  // second, far larger executable via BIOS LoadExec -- and that second file was the real game, 1783
+  // functions against the bootstrap's 323. If Tenchu does the same, add the target here rather than
+  // as a separate recompiler invocation: "file" pulls an arbitrary disc file directly, "offset":
+  // 2048 skips the standard PS-EXE header so byte 0 is the first real instruction, and "base" must
+  // match the header's own t_addr (read it out of the file with od/hexdump). Force-declare the
+  // header's pc0 as an entry point, since nothing inside the overlay's own scanned code calls it.
+  //
+  // Shape of such an entry, for reference:
+  //   { "name": "game", "file": "\\SOMETHING.BIN;1", "offset": 2048, "base": "0001XXXX",
+  //     "linearSweep": true, "functions": [ { "address": "000XXXXX" } ] }
+  // WIRED 2026-08-20. Boot chain, observed and not assumed:
+  //     SLUS_007.06 (bootstrap)  --BIOS A(43h) Exec-->  RUN.EXE  --Exec-->  MENU.EXE
+  // MENU.EXE then runs its own ResetGraph/CD_init pass and stays in its loop.
+  //
+  // The bases and entry points below are read from each file's own PS-EXE header, verified off the
+  // disc, not guessed. Every file's size is exactly 2048 + t_size, so "offset": 2048 is correct for
+  // all four -- it skips the 0x800 header so byte 0 is the first real instruction. Each entry point
+  // must be force-declared because nothing inside an overlay's own scanned code calls it.
+  //
+  // TWO NAMING RULES, both learned the hard way:
+  //
+  // 1. MAIN.EXE's overlay is called "game", NOT "main". The recompiler HARDCODES the boot
+  //    executable's overlay name to "main" (OverlayWriter.cs:109) and emits each overlay to
+  //    "<name>.cs", so a second overlay named "main" silently OVERWRITES the bootstrap's main.cs.
+  //    It still reports the combined function count and still compiles; it then dies at the first
+  //    instruction with a bogus "unmapped call: 0x8001A578". Filed as a general recompiler bug
+  //    against the engine, not this game.
+  //
+  // 2. The names here are otherwise free BECAUSE this game hands off via A(43h) Exec, which carries
+  //    no path -- the engine identifies the target overlay by its ENTRY POINT instead. A game that
+  //    used A(51h) LoadExec would be different: there the name is derived from the filename
+  //    (lowercased, no directory, no extension, no ";1") and is NOT free-choice.
+  "overlays": [
+    { "name": "run",    "file": "\\TENCHU\\RUN.EXE;1",    "offset": 2048, "base": "80110000",
+      "linearSweep": true, "functions": [ { "address": "801191BC" } ] },
+    { "name": "menu",   "file": "\\TENCHU\\MENU.EXE;1",   "offset": 2048, "base": "80011000",
+      "linearSweep": true, "functions": [ { "address": "8002648C" } ] },
+    { "name": "game",   "file": "\\TENCHU\\MAIN.EXE;1",   "offset": 2048, "base": "80011000",
+      "linearSweep": true, "functions": [ { "address": "8005E5CC" } ] },
+    { "name": "ending", "file": "\\TENCHU\\ENDING.EXE;1", "offset": 2048, "base": "80011000",
+      "linearSweep": true, "functions": [ { "address": "8001D27C" } ] }
+  ],
+
+  // Force-declare functions the scanner misses: { "address": "80010000", "name": "SomeFunc" }
+  //
+  // EMPTY, AND THAT IS THE FIX, NOT AN OMISSION.
+  //
+  // This used to hold 98 addresses, dumped by hand from twelve jump tables because the game reaches
+  // them through function-pointer tables in RAM that no static scan can see. They are no longer
+  // needed: the recompiler now runs its jump-table analysis on a symbol-less MAIN executable, which
+  // it previously did only for overlays (fixed in the engine, commit d2ed0d5 -- the analysis was
+  // gated on an elfInfo container it never actually reads).
+  //
+  // VERIFIED, not assumed. Recompiling this disc both ways:
+  //     with the 98 declares : main.cs 1002 functions
+  //     without them         : main.cs  902 functions, and the analyser finds 127 table arms
+  //                            covering ALL 98 of the old addresses (98/98, plus 29 it also found)
+  // The build without them boots correctly -- main -> run -> menu, both BIOS Exec lines, CD_init,
+  // no unmapped calls.
+  //
+  // The 902 number is the CORRECT one. Those 98 addresses are mid-function switch arms, not
+  // function starts: none of them opens with an SP-decrement prologue and they read c.S0/c.S1 as
+  // inputs. Declaring them made 98 prologue-less pseudo-functions that worked only because
+  // CpuContext is passed by reference and the jr is a genuine tail jump. The analyser now compiles
+  // them as intra-function gotos instead, which is what they always were.
+  //
+  // KEEP "linearSweep": true above -- that IS still load-bearing, and takes main from 668 to 902.
+  "functions": [
+  ],
+
+  // Replace a function with an empty stub (e.g. broken/irrelevant funcs): ["FUNC_80010000"]
+  "stubs": [],
+
+  // Skip these functions entirely during codegen: ["FUNC_80010000"]
+  "ignored": [],
+
+  // Base-mod patches that replace a recompiled function with your own C# method.
+  //   { "address": "800553C4", "target": "MyMod.MyClass.MyMethod", "mode": "replace" }
+  // mode is replace (default), pre, or post. NOTE: the RecompOne README documents this field as
+  // "name"; that is stale. The property is "target", and a config using "name" parses fine and
+  // silently binds nothing.
+  "patches": []
+}

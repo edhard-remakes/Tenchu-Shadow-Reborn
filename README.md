@@ -16,9 +16,16 @@ Esta é uma versão **experimental**. O jogo está no executável anexado à ver
 
 ## Código-fonte
 
-**[Baixar o código-fonte da v0.2.0](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/download/v0.2.0/Tenchu-Shadow-Reborn-v0.2.0-source.zip)**
+Os arquivos estão versionados diretamente na branch **main**, organizados em pastas, para consultar, clonar e contribuir pelo GitHub:
 
-O ZIP contém 49 arquivos com os fontes do aplicativo, das mudanças de gameplay, do lançador e dos scripts de preparação, além de um guia de compilação. O motor RecompOne é uma dependência externa, explicada no README do pacote. Os recursos do disco, o pacote HD de terceiros, os saves e o código do jogo gerado localmente não fazem parte desse ZIP. Para os fontes do aplicativo, use este anexo; os arquivos automáticos “Source code” do GitHub continuam sendo a apresentação deste repositório.
+- [Aplicativo e mudanças de gameplay](dev/Tenchu-Windows/)
+- [Lançador do EXE único](dev/SingleFileLauncher/)
+- [Patch de temporização](dev/RuntimePatch/)
+- [Ferramentas de textura](texture-tools/)
+- [Refinamento da malha](rikimaru-refinado-v1/) e [preparação das texturas](rikimaru-refinado-texturizado/)
+- **[Instruções de compilação](docs/BUILDING.md)**
+
+O [ZIP de fontes da v0.2.0](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/download/v0.2.0/Tenchu-Shadow-Reborn-v0.2.0-source.zip) continua como opção extra. O motor RecompOne é uma dependência externa, descrita no guia. Disco, BIOS, saves, pacote HD de terceiros e código de jogo gerado localmente ficam fora dos fontes versionados. Os arquivos automáticos de tags anteriores à importação mantêm o conteúdo daquele momento; para consultar os fontes no Git, use a branch main.
 
 ## O que estamos experimentando
 

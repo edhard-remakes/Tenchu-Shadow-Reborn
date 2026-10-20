@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TieredCompilation>false</TieredCompilation>
+    <AssemblyName>TenchuSARecomp</AssemblyName>
+    <RootNamespace>TenchuSARecomp</RootNamespace>
+    <Version>0.1.0</Version>
+    <ApplicationIcon>assets/tenchu-shadow-reborn.ico</ApplicationIcon>
+    <Product>Tenchu Shadow Reborn</Product>
+    <Title>Tenchu Shadow Reborn</Title>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RecompOneDir Condition="'$(RecompOneDir)' == ''">$(MSBuildThisFileDirectory)../RecompOne-fork</RecompOneDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TenchuBenchmarks)' == 'true'">
+    <DefineConstants>$(DefineConstants);TENCHU_BENCHMARKS</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TenchuBenchmarks)' != 'true'">
+    <Compile Remove="Benchmark*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="GameTemplate/**/*.cs" />
+    <None Include="assets/**" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="GameTemplate/**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="publish/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.IO.Hashing">
+      <HintPath>$(MSBuildSDKsPath)/../System.IO.Hashing.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="RecompOne.Runtime">
+      <HintPath>../../dependencies/RecompOne.Runtime.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="recompone">
+      <HintPath>../../dependencies/recompone.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <PackageReference Include="ImGui.NET" Version="1.90.8.1" />
+    <PackageReference Include="LibObjectFile" Version="2.1.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="5.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.6.0" />
+    <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="9.0.9" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+    <PackageReference Include="MonoMod.Backports" Version="1.1.2" />
+    <PackageReference Include="MonoMod.Core" Version="1.3.6" />
+    <PackageReference Include="MonoMod.ILHelpers" Version="1.1.0" />
+    <PackageReference Include="MonoMod.RuntimeDetour" Version="25.3.6" />
+    <PackageReference Include="MonoMod.Utils" Version="25.0.14" />
+    <PackageReference Include="NativeFileDialogSharp" Version="0.5.0" />
+    <PackageReference Include="RabbitizerSharp" Version="0.1.0" />
+    <PackageReference Include="Silk.NET" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Core" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.GLFW" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Input" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Input.Common" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Input.Extensions" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Input.Glfw" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Maths" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.OpenAL" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.OpenGL.Extensions.ImGui" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.SDL" Version="2.23.0" />
+    <PackageReference Include="Silk.NET.Vulkan" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Vulkan.Extensions.KHR" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Windowing.Common" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.Windowing.Glfw" Version="2.22.0" />
+    <PackageReference Include="Ultz.Native.GLFW" Version="3.4.0" />
+    <PackageReference Include="Ultz.Native.SDL" Version="2.32.10" />
+  </ItemGroup>
+</Project>
+

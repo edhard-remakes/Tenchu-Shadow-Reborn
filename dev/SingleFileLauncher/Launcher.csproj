@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Tenchu Shadow Reborn</AssemblyName>
+    <Product>Tenchu Shadow Reborn</Product>
+    <Title>Tenchu Shadow Reborn</Title>
+    <ApplicationIcon>../Tenchu-Windows/assets/tenchu-shadow-reborn.ico</ApplicationIcon>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile><EnableSingleFileAnalyzer>false</EnableSingleFileAnalyzer><EnableTrimAnalyzer>false</EnableTrimAnalyzer><PublishTrimmed>false</PublishTrimmed>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+</Project>
+
