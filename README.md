@@ -8,9 +8,9 @@ Projeto experimental de fã que revisita **Tenchu: Stealth Assassins** no **Wind
 
 ## Baixar e jogar
 
-**[Baixar Tenchu Shadow Reborn — v0.1.0 para Windows](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/tag/v0.1.0)**
+**[Baixar Tenchu Shadow Reborn — v0.2.0 para Windows](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/tag/v0.2.0)**
 
-Na página da versão, abra **Assets** e baixe o **EXE único** do jogo (aproximadamente 1,15 GB). Salve no computador e abra o arquivo. Na primeira execução, ele prepara os dados automaticamente; os saves ficam no computador.
+Na página da versão, abra **Assets** e baixe o **EXE único** do jogo (aproximadamente 1,17 GB). Salve no computador e abra o arquivo. Na primeira execução, ele prepara os dados automaticamente; os saves ficam no computador.
 
 Esta é uma versão **experimental**. O jogo está no executável anexado à versão; os arquivos automáticos “Source code” contêm a apresentação deste repositório.
 
