@@ -14,6 +14,12 @@ Na página da versão, abra **Assets** e baixe o **EXE único** do jogo (aproxim
 
 Esta é uma versão **experimental**. O jogo está no executável anexado à versão; os arquivos automáticos “Source code” contêm a apresentação deste repositório.
 
+## Código-fonte
+
+**[Baixar o código-fonte da v0.2.0](https://github.com/edhard-remakes/Tenchu-Shadow-Reborn/releases/download/v0.2.0/Tenchu-Shadow-Reborn-v0.2.0-source.zip)**
+
+O ZIP contém 49 arquivos com os fontes do aplicativo, das mudanças de gameplay, do lançador e dos scripts de preparação, além de um guia de compilação. O motor RecompOne é uma dependência externa, explicada no README do pacote. Os recursos do disco, o pacote HD de terceiros, os saves e o código do jogo gerado localmente não fazem parte desse ZIP. Para os fontes do aplicativo, use este anexo; os arquivos automáticos “Source code” do GitHub continuam sendo a apresentação deste repositório.
+
 ## O que estamos experimentando
 
 - Texturas em HD e apresentação em modo janela.
